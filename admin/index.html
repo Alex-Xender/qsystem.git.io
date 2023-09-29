@@ -4,32 +4,89 @@
     header('location:home.php');
   }
 ?>
-<?php include 'includes/header.php'; ?>
-<body class="hold-transition login-page">
-<div class="login-box">
-  	<div class="login-logo">
-  		<b>Admin Login</b>
-  	</div>
-  
-  	<div class="login-box-body">
-    	<p class="login-box-msg">Sign in to start your session</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <style>
+    body {
+      background-image: url('usersimag.gif');
+      background-repeat: no-repeat; 
+      background-size: cover; 
+      background-attachment: fixed; 
+    }
 
-    	<form action="login.php" method="POST">
-      		<div class="form-group has-feedback">
-        		<input type="text" class="form-control" name="username" placeholder="input Username" required autofocus>
-        		<span class="glyphicon glyphicon-user form-control-feedback"></span>
-      		</div>
-          <div class="form-group has-feedback">
-            <input type="password" class="form-control" name="password" placeholder="input Password" required>
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-          </div>
-      		<div class="row">
-    			<div class="col-xs-4">
-          			<button type="submit" class="btn btn-primary btn-block btn-flat" name="login"><i class="fa fa-sign-in"></i> Sign In</button>
-        		</div>
-      		</div>
-    	</form>
-  	</div>
+    .login-box {
+      background-color: #00ffb4;
+      border: 1px solid #d2d6de;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      margin: 0 auto;
+      max-width: 400px;
+      padding: 8px;
+      margin-top: 0px;
+    }
+
+    .login-logo {
+      text-align: center;
+    }
+
+    .login-box-msg {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .alert {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<?php include 'includes/header.php'; ?>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="login-box">
+        <div class="login-logo">
+          <h2>Qlogic Administrator Panel</h2>
+          <b>Admin Login</b>
+        </div>
+        <div class="login-box-body">
+          <p class="login-box-msg">Sign in to start your account</p>
+          <form action="login.php" method="POST">
+            <div class="form-group has-feedback">
+              <input type="text" class="form-control" name="username" placeholder="input Username" required autofocus>
+              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+              <input type="password" class="form-control" name="password" placeholder="input Password" required>
+              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+              <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" name="login">
+                  <i class="fa fa-sign-in"></i> Sign In
+                </button>
+              </div>
+            </div>
   	<?php
   		if(isset($_SESSION['error'])){
   			echo "
@@ -40,6 +97,12 @@
   			unset($_SESSION['error']);
   		}
   	?>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 	
 <?php include 'includes/scripts.php' ?>

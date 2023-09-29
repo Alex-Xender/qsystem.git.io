@@ -16,6 +16,25 @@
   background-attachment: fixed; 
 }
 
+    .slider-container {
+      width: 300px;
+      white-space: nowrap;
+      overflow: hidden;
+        }
+        
+    .slider-text {
+      display: inline-block;
+      animation: slide 10s linear infinite;
+        }
+    @keyframes slide {
+      0% {
+      transform: translateX(100%); 
+        }
+      100% {
+      transform: translateX(-100%); 
+        }
+      }
+
     .login-box {
       background-color: #00ffb4;
       border: 1px solid #d2d6de;
@@ -65,7 +84,12 @@
     <div class="col-md-6 offset-md-3">
       <div class="login-box">
         <div class="login-logo">
-    <h2><u>Qlogic Attendance Portal</u></h2>
+
+    <div class="slider-container">
+        <div class="slider-text">
+    <h2><u>Qlogic Attendance Portal</u></h2>  
+        </div>
+    </div>
           <p id="date"></p>
           <p id="time" class="bold"></p>
         </div>
