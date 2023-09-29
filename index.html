@@ -1,78 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attendance System</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <style>
+    body {
+  background-image: url('images/userimag.gif');
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  background-attachment: fixed; 
+}
+
+    .login-box {
+      background-color: #00ffb4;
+      border: 1px solid #d2d6de;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      margin: 0 auto;
+      max-width: 400px;
+      padding: 8px;
+      margin-top: 0px;
+    }
+
+    .login-logo {
+      text-align: center;
+    }
+
+    .login-box-msg {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .alert {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
 <?php session_start(); ?>
 <?php include 'header.php'; ?>
-<body class="hold-transition login-page">
-<div class="login-box">
-  	<div class="login-logo">
-  		<p id="date"></p>
-      <p id="time" class="bold"></p>
-  	</div>
-  
-  	<div class="login-box-body">
-    	<h4 class="login-box-msg">Enter Employee ID</h4>
-
-    	<form id="attendance">
-          <div class="form-group">
-            <select class="form-control" name="status">
-              <option value="in">Check In</option>
-              <option value="out">Check Out</option>
-            </select>
-          </div>
-      		<div class="form-group has-feedback">
-        		<input type="text" class="form-control input-lg" id="employee" name="employee" required>
-        		<span class="glyphicon glyphicon-calendar form-control-feedback"></span>
-      		</div>
-      		<div class="row">
-    			<div class="col-xs-4">
-          			<button type="submit" class="btn btn-primary btn-block btn-flat" name="signin"><i class="fa fa-sign-in"></i> Sign In</button>
-        		</div>
-      		</div>
-    	</form>
-  	</div>
-		<div class="alert alert-success alert-dismissible mt20 text-center" style="display:none;">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <span class="result"><i class="icon fa fa-check"></i> <span class="message"></span></span>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="login-box">
+        <div class="login-logo">
+    <h2><u>Qlogic Attendance Portal</u></h2>
+          <p id="date"></p>
+          <p id="time" class="bold"></p>
+        </div>
+        <div class="login-box-body">
+          <h4 class="login-box-msg">Enter Employee ID</h4>
+          <form id="attendance">
+            <div class="form-group">
+              <select class="form-control" name="status">
+                <option value="in">Check In</option>
+                <option value="out">Check Out</option>
+              </select>
+            </div>
+            <div class="form-group has-feedback">
+              <input type="text" class="form-control input-lg" id="employee" name="employee" required>
+              <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 offset-xs-3">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" name="signin">
+                  <i class="fa fa-sign-in"></i> Sign In
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="alert alert-success alert-dismissible mt-3 text-center" style="display:none;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <span class="result"><i class="icon fa fa-check"></i> <span class="message"></span></span>
+        </div>
+        <div class="alert alert-danger alert-dismissible mt-3 text-center" style="display:none;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <span class="result"><i class="icon fa fa-warning"></i> <span class="message"></span></span>
+        </div>
+      </div>
     </div>
-		<div class="alert alert-danger alert-dismissible mt20 text-center" style="display:none;">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <span class="result"><i class="icon fa fa-warning"></i> <span class="message"></span></span>
-    </div>
-  		
+  </div>
 </div>
-	
 <?php include 'scripts.php' ?>
 <script type="text/javascript">
-$(function() {
-  var interval = setInterval(function() {
-    var momentNow = moment();
-    $('#date').html(momentNow.format('dddd').substring(0,3).toUpperCase() + ' - ' + momentNow.format('MMMM DD, YYYY'));  
-    $('#time').html(momentNow.format('hh:mm:ss A'));
-  }, 100);
+  $(function() {
+    var interval = setInterval(function() {
+      var momentNow = moment();
+      $('#date').html(momentNow.format('dddd').substring(0, 3).toUpperCase() + ' - ' + momentNow.format('MMMM DD, YYYY'));
+      $('#time').html(momentNow.format('hh:mm:ss A'));
+    }, 100);
 
-  $('#attendance').submit(function(e){
-    e.preventDefault();
-    var attendance = $(this).serialize();
-    $.ajax({
-      type: 'POST',
-      url: 'attendance.php',
-      data: attendance,
-      dataType: 'json',
-      success: function(response){
-        if(response.error){
-          $('.alert').hide();
-          $('.alert-danger').show();
-          $('.message').html(response.message);
+    $('#attendance').submit(function(e) {
+      e.preventDefault();
+      var attendance = $(this).serialize();
+      $.ajax({
+        type: 'POST',
+        url: 'attendance.php',
+        data: attendance,
+        dataType: 'json',
+        success: function(response) {
+          if (response.error) {
+            $('.alert').hide();
+            $('.alert-danger').show();
+            $('.message').html(response.message);
+          } else {
+            $('.alert').hide();
+            $('.alert-success').show();
+            $('.message').html(response.message);
+            $('#employee').val('');
+          }
         }
-        else{
-          $('.alert').hide();
-          $('.alert-success').show();
-          $('.message').html(response.message);
-          $('#employee').val('');
-        }
-      }
+      });
     });
+
   });
-    
-});
 </script>
 </body>
 </html>
